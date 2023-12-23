@@ -25,4 +25,6 @@ Route::get('displaylocation', [UserController::class, 'index']);
 Route::controller(GeoController::class)->group(function () {
     Route::get('/radius', 'index')->name('radius');
     Route::post('/store', 'storeLocation')->name('store.location');
+    Route::get('/location', 'allLocation')->name('all.location');
+    Route::get('/location/{id}', 'getLocation')->name('location');
 });

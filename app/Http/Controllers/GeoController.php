@@ -32,6 +32,22 @@ class GeoController extends Controller
     return view('geo', compact('lat1', 'lon1', 'lat2', 'lon2', 'distance', 'info'));
   }
 
+  public function allLocation()
+  {
+    $location = ModelsLocation::latest()->get();
+
+    return view('all-location', compact('location'));
+    
+  }
+
+  public function getLocation($id)
+  {
+    $location = ModelsLocation::findOrFail($id);
+
+    return view('location', compact('location'));
+    
+  }
+
   public function storeLocation(Request $request)
   {
 
