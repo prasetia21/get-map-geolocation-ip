@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoordinateController;
 use App\Http\Controllers\GeoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +20,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('displaylocation', [UserController::class, 'index']);
+Route::get('/displaylocation', [UserController::class, 'index']);
 
+Route::controller(CoordinateController::class)->group(function () {
+    Route::get('/geolocation', 'index')->name('geolocation');
+    Route::post('/store-location', 'storeLocation')->name('store.geolocation');
+});
 
 Route::controller(GeoController::class)->group(function () {
     Route::get('/radius', 'index')->name('radius');
